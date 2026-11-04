@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de la Tortuga</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      background-color: #e0f7fa;
+    }
+    #canvas {
+      background-color: #81c784;
+      border: 3px solid #2e7d32;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mueve a la Tortuga 🐢</h1>
+  <p>Usa las flechas del teclado para moverla.</p>
+  <canvas id="canvas" width="500" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let posX = 230;
+    let posY = 180;
+    const velocidad = 10;
+
+    function dibujarTortuga() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '40px serif';
+      ctx.fillText('🐢', posX, posY);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp' && posY > 40) posY -= velocidad;
+      if (e.key === 'ArrowDown' && posY < canvas.height - 10) posY += velocidad;
+      if (e.key === 'ArrowLeft' && posX > 0) posX -= velocidad;
+      if (e.key === 'ArrowRight' && posX < canvas.width - 40) posX += velocidad;
+      dibujarTortuga();
+    });
+
+    dibujarTortuga();
+  </script>
+</body>
+</html>
