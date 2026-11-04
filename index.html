@@ -2,48 +2,77 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Juego de la Tortuga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Primera Página Web</title>
   <style>
-    body {
-      text-align: center;
-      font-family: sans-serif;
-      background-color: #e0f7fa;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    #canvas {
-      background-color: #81c784;
-      border: 3px solid #2e7d32;
-      margin-top: 10px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      color: #7f8c8d;
+      font-size: 1.1rem;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #2980b9;
     }
   </style>
 </head>
 <body>
-  <h1>Mueve a la Tortuga 🐢</h1>
-  <p>Usa las flechas del teclado para moverla.</p>
-  <canvas id="canvas" width="500" height="400"></canvas>
 
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+  <header>
+    <h1>¡Hola, bienvenido a mi sitio web! 🚀</h1>
+    <p class="subtitle">Esta es mi primera página web publicada en internet con GitHub Pages.</p>
+  </header>
 
-    let posX = 230;
-    let posY = 180;
-    const velocidad = 10;
+  <main class="card">
+    <h2>Sobre mi proyecto</h2>
+    <p style="margin-top: 15px; line-height: 1.6;">
+      Estoy aprendiendo a programar en HTML, CSS y Git. Pronto agregaré más secciones e contenido interactivo.
+    </p>
+    <a href="#" class="btn" onclick="alert('¡Gracias por visitar mi página!')">¡Haz clic aquí!</a>
+  </main>
 
-    function dibujarTortuga() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '40px serif';
-      ctx.fillText('🐢', posX, posY);
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowUp' && posY > 40) posY -= velocidad;
-      if (e.key === 'ArrowDown' && posY < canvas.height - 10) posY += velocidad;
-      if (e.key === 'ArrowLeft' && posX > 0) posX -= velocidad;
-      if (e.key === 'ArrowRight' && posX < canvas.width - 40) posX += velocidad;
-      dibujarTortuga();
-    });
-
-    dibujarTortuga();
-  </script>
 </body>
 </html>
