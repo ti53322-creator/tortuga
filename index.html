@@ -3,76 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Primera Página Web</title>
+  <title>Juego de la Tortuga 🐢</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #e0f7fa;
+      margin: 0;
       padding: 20px;
     }
-    header {
-      text-align: center;
-      margin: 40px 0 20px 0;
-    }
     h1 {
-      color: #2c3e50;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      color: #00695c;
     }
-    p.subtitle {
-      color: #7f8c8d;
+    p {
+      color: #004d40;
       font-size: 1.1rem;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      margin-top: 20px;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #3498db;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background-color: #2980b9;
+    #gameCanvas {
+      background-color: #a5d6a7;
+      border: 4px solid #2e7d32;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>¡Hola, bienvenido a mi sitio web! 🚀</h1>
-    <p class="subtitle">Esta es mi primera página web publicada en internet con GitHub Pages.</p>
-  </header>
+  <h1>¡Mueve a la Tortuga! 🐢</h1>
+  <p>Usa las <strong>flechas del teclado</strong> (⬆️ ⬇️ ⬅️ ➡️) para moverte.</p>
+  
+  <canvas id="gameCanvas" width="500" height="400"></canvas>
 
-  <main class="card">
-    <h2>Sobre mi proyecto</h2>
-    <p style="margin-top: 15px; line-height: 1.6;">
-      Estoy aprendiendo a programar en HTML, CSS y Git. Pronto agregaré más secciones e contenido interactivo.
-    </p>
-    <a href="#" class="btn" onclick="alert('¡Gracias por visitar mi página!')">¡Haz clic aquí!</a>
-  </main>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Posición inicial de la tortuga
+    let posX = 230;
+    let posY = 200;
+    const velocidad = 15;
+
+    function dibujar() {
+      // Limpiar el lienzo
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Dibujar la tortuga (emoji)
+      ctx.font = '45px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🐢', posX, posY);
+    }
+
+    // Escuchar las teclas presionadas
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault(); // Evita que la página se desplace
+      }
+
+      if (e.key === 'ArrowUp' && posY > 30) posY -= velocidad;
+      if (e.key === 'ArrowDown' && posY < canvas.height - 30) posY += velocidad;
+      if (e.key === 'ArrowLeft' && posX > 30) posX -= velocidad;
+      if (e.key === 'ArrowRight' && posX < canvas.width - 30) posX += velocidad;
+
+      dibujar();
+    });
+
+    // Dibujar la primera vez
+    dibujar();
+  </script>
 
 </body>
 </html>
